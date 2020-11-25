@@ -96,7 +96,9 @@ window.Render.prototype.processDeletedGameEntityGuids = function(deleted) {
 
       if (guid == selectedPortal) {
         // the rare case of the selected portal being deleted. clear the details tab and deselect it
-        renderPortalDetails(null);
+//##MJ##        renderPortalDetails(null);
+         window.selectPortal(null);
+//##MJ##         
       }
 
       this.deleteEntity(guid);
@@ -329,14 +331,20 @@ window.Render.prototype.createPortalEntity = function(ent) {
   var marker = createMarker(latlng, dataOptions);
 
   function handler_portal_click (e) {
-    window.renderPortalDetails(e.target.options.guid);
+//**MJ**
+    window.selectPortal(e.target.options.guid);
+//  window.renderPortalDetails(e.target.options.guid);
   }
   function handler_portal_dblclick (e) {
-    window.renderPortalDetails(e.target.options.guid);
+//**MJ**
+    window.selectPortal(e.target.options.guid);
+//  window.renderPortalDetails(e.target.options.guid);
     window.map.setView(e.target.getLatLng(), DEFAULT_ZOOM);
   }
   function handler_portal_contextmenu (e) {
-    window.renderPortalDetails(e.target.options.guid);
+//**MJ**
+    window.selectPortal(e.target.options.guid);
+//  window.renderPortalDetails(e.target.options.guid);
     if (window.isSmartphone()) {
       window.show('info');
     } else if (!$('#scrollwrapper').is(':visible')) {
