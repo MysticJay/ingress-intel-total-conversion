@@ -43,7 +43,7 @@ var handleResponse = function(deferred, guid, data, success) {
     //FIXME..? better way of handling sidebar refreshing...
 
     if (guid == selectedPortal) {
-      renderPortalDetails(guid);
+      renderPortalDetails2(guid);
     }
 
     deferred.resolve(dict);

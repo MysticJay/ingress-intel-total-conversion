@@ -532,7 +532,7 @@
       if(event.type == 'dblclick')
         zoomToAndShowPortal(guid, result.position);
       else if(window.portals[guid])
-        renderPortalDetails(guid);
+        selectPortal(guid);
       else
         window.selectPortalByLatLng(result.position);
     } else if(result.zoom) { // map
@@ -1095,7 +1095,7 @@
       })
     });
     window.registerMarkerForOMS(star);
-    star.on('spiderfiedclick', function() { renderPortalDetails(guid); });
+    star.on('spiderfiedclick', function() { selectPortal(guid); });
 
     window.plugin.bookmarks.starLayers[guid] = star;
     star.addTo(window.plugin.bookmarks.starLayerGroup);

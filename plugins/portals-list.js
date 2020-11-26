@@ -365,7 +365,7 @@ window.plugin.portalslist.getPortalLink = function(portal) {
   link.textContent = portal.options.data.title;
   link.href = perma;
   link.addEventListener("click", function(ev) {
-    renderPortalDetails(portal.options.guid);
+    selectPortal(portal.options.guid);
     ev.preventDefault();
     return false;
   }, false);

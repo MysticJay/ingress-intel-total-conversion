@@ -282,7 +282,7 @@ addHook('search', function(query) {
             zoomToAndShowPortal(guid, portal.getLatLng());
           } else if(window.portals[guid]) {
             if(!map.getBounds().contains(result.position)) map.setView(result.position);
-            renderPortalDetails(guid);
+            selectPortal(guid);
           } else {
             window.selectPortalByLatLng(portal.getLatLng());
           }
@@ -315,7 +315,7 @@ addHook('search', function(query) {
         for(var guid in window.portals) {
           var p = window.portals[guid].getLatLng();
           if((p.lat.toFixed(6)+","+p.lng.toFixed(6)) == ll) {
-            renderPortalDetails(guid);
+            selectPortal(guid);
             return;
           }
         }

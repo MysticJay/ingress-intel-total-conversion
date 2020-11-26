@@ -113,7 +113,7 @@ plugin.showLinkedPortal.onLinkedPortalClick = function() {
   var position = L.latLng(lat, lng);
   if(!map.getBounds().contains(position)) map.setView(position);
   if(portals[guid])
-    renderPortalDetails(guid);
+    selectPortal(guid);
   else
     zoomToAndShowPortal(guid, position);
 };

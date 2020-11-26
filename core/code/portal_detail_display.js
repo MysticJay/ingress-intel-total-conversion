@@ -9,7 +9,14 @@ window.resetScrollOnNewPortal = function() {
   }
 };
 
+/**
+ * @deprecated use selectPortal
+ */
 window.renderPortalDetails = function(guid) {
+  selectPortal(window.portals[guid] ? guid : null);
+};
+  
+window.renderPortalDetails2 = function(guid) {
   if ($('#sidebar').is(':visible')) {
     window.resetScrollOnNewPortal();
     window.renderPortalDetails.lastVisible = guid;
@@ -301,7 +308,8 @@ window.selectPortal = function(guid) {
   }
 
   setPortalIndicators(newPortal);
-  renderPortalDetails(guid);
+  renderPortalDetails2(guid);
+
   runHooks('portalSelected', {selectedPortalGuid: guid, unselectedPortalGuid: oldPortalGuid});
   return update;
 }
