@@ -96,9 +96,7 @@ window.Render.prototype.processDeletedGameEntityGuids = function(deleted) {
 
       if (guid == selectedPortal) {
         // the rare case of the selected portal being deleted. clear the details tab and deselect it
-//##MJ##        renderPortalDetails(null);
          window.selectPortal(null);
-//##MJ##         
       }
 
       this.deleteEntity(guid);
@@ -175,7 +173,7 @@ window.Render.prototype.endRenderPass = function() {
 
   // re-select the selected portal, to re-render the side-bar. ensures that any data calculated from the map data is up to date
   if (selectedPortal) {
-    renderPortalDetails (selectedPortal);
+    renderPortalDetails2(selectedPortal);
   }
 }
 
@@ -331,20 +329,14 @@ window.Render.prototype.createPortalEntity = function(ent) {
   var marker = createMarker(latlng, dataOptions);
 
   function handler_portal_click (e) {
-//**MJ**
     window.selectPortal(e.target.options.guid);
-//  window.renderPortalDetails(e.target.options.guid);
   }
   function handler_portal_dblclick (e) {
-//**MJ**
     window.selectPortal(e.target.options.guid);
-//  window.renderPortalDetails(e.target.options.guid);
     window.map.setView(e.target.getLatLng(), DEFAULT_ZOOM);
   }
   function handler_portal_contextmenu (e) {
-//**MJ**
     window.selectPortal(e.target.options.guid);
-//  window.renderPortalDetails(e.target.options.guid);
     if (window.isSmartphone()) {
       window.show('info');
     } else if (!$('#scrollwrapper').is(':visible')) {
@@ -378,7 +370,7 @@ window.Render.prototype.createPortalEntity = function(ent) {
   // (re-)select the portal, to refresh the sidebar on any changes
   if (ent[0] == selectedPortal) {
     log.log('portal guid '+ent[0]+' is the selected portal - re-rendering portal details');
-    renderPortalDetails (selectedPortal);
+    renderPortalDetails2(selectedPortal);
   }
 
   window.ornaments.addPortal(marker);

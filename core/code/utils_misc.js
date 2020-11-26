@@ -293,7 +293,7 @@ window.zoomToAndShowPortal = function(guid, latlng) {
   // if the data is available, render it immediately. Otherwise defer
   // until it becomes available.
   if(window.portals[guid])
-    renderPortalDetails(guid);
+    selectPortal(guid);
   else
     urlPortal = guid;
 }
@@ -309,7 +309,7 @@ window.selectPortalByLatLng = function(lat, lng) {
   for(var guid in window.portals) {
     var latlng = window.portals[guid].getLatLng();
     if(latlng.lat == lat && latlng.lng == lng) {
-      renderPortalDetails(guid);
+      selectPortal(guid);
       return;
     }
   }
