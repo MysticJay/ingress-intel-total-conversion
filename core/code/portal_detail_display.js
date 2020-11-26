@@ -10,7 +10,6 @@ window.resetScrollOnNewPortal = function() {
 };
 
 window.renderPortalDetails = function(guid) {
-//##MJ##  selectPortal(window.portals[guid] ? guid : null);
   if ($('#sidebar').is(':visible')) {
     window.resetScrollOnNewPortal();
     window.renderPortalDetails.lastVisible = guid;
@@ -124,9 +123,7 @@ window.renderPortalDetails = function(guid) {
         accesskey: 'w'
       }).text('X')
         .click(function () {
-//##MJ##        renderPortalDetails(null);
-         window.selectPortal(null);
-//##MJ##         
+          window.selectPortal(null);
           if (isSmartphone()) { show('map') };
         }),
 
@@ -304,9 +301,7 @@ window.selectPortal = function(guid) {
   }
 
   setPortalIndicators(newPortal);
-//##MJ##
   renderPortalDetails(guid);
-//##MJ##  if (!update)
   runHooks('portalSelected', {selectedPortalGuid: guid, unselectedPortalGuid: oldPortalGuid});
   return update;
 }
