@@ -60,9 +60,7 @@ function parseArtifactDetail(arr) {
   };
 }
 
-function parseHistoryDetail(bitarray, required) {
-  if (bitarray == null && !required) return null;
-  if (bitarray == null) bitarray = 0;
+function parseHistoryDetail(bitarray) {
   return {
     _raw: bitarray,
     visited:  !!(bitarray & (1|2|4)),
@@ -111,9 +109,23 @@ function detailsPortalData(a) {
   }
 };
 
-function extendedPortalData(a, required) {
+// on getEntities, intel send the history unless the user has never interacted with the portal
+// raw data is either a summary or an extended data with null details
+// in the first case, history is forced to 0 if missing
+function extendedPortalData(a) {
+  // default value on entities from getEntities
+  if (a.length == SUMMARY_PORTAL_DATA_LENGTH)
+    return {
+      history: parseHistoryDetail(0),
+    }
+  // default value if no extended portal data
+  if (a.length < EXTENDED_PORTAL_DATA_LENGTH)
+    return {
+      history: null,
+    }
+  // parse extended data otherwise
   return {
-    history: parseHistoryDetail(a[DETAILED_PORTAL_DATA_LENGTH], required),
+    history: parseHistoryDetail(a[DETAILED_PORTAL_DATA_LENGTH]),
   }
 };
 
@@ -138,10 +150,7 @@ window.decodeArray.portalSummary = function(a) {
     debugger;
   }
 
-  // on getEntities, intel send the history unless the user has never interacted with the portal
-  // raw data is either a summary or an extended data with null details
-  // in the first case, history is forced to 0 if missing
-  return $.extend(corePortalData(a), summaryPortalData(a), extendedPortalData(a, a.length === SUMMARY_PORTAL_DATA_LENGTH));
+  return $.extend(corePortalData(a), summaryPortalData(a), extendedPortalData(a));
 }
 
 window.decodeArray.portalDetail = function(a) {
@@ -163,5 +172,5 @@ window.decodeArray.portalDetail = function(a) {
   // the portal details array is just an extension of the portal summary array
   // to allow for niantic adding new items into the array before the extended details start,
   // use the length of the summary array
-  return $.extend(corePortalData(a), summaryPortalData(a), detailsPortalData(a), extendedPortalData(a, false));
+  return $.extend(corePortalData(a), summaryPortalData(a), detailsPortalData(a), extendedPortalData(a));
 }
