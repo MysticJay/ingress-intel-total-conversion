@@ -111,17 +111,17 @@ function detailsPortalData(a) {
 
 // on getEntities, intel send the history unless the user has never interacted with the portal
 // raw data is either a summary or an extended data with null details
-// in the first case, history is forced to 0 if missing
+// when it is a summary, history is forced to 0
 function extendedPortalData(a) {
   // default value on entities from getEntities
   if (a.length == SUMMARY_PORTAL_DATA_LENGTH)
     return {
-      history: parseHistoryDetail(0),
+      history: parseHistoryDetail(0), // never interacted with this portal
     }
   // default value if no extended portal data
   if (a.length < EXTENDED_PORTAL_DATA_LENGTH)
     return {
-      history: null,
+      history: null, // no data
     }
   // parse extended data otherwise
   return {
