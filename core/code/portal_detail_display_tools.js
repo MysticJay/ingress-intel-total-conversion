@@ -6,16 +6,24 @@ window.getPortalHistoryDetails = function (d) {
   if (!d.history) {
     return '<div id="historydetails" class="missing">History missing</div>';
   }
+
   var classParts = {};
-  ['visited', 'captured', 'scoutControlled'].forEach(function (k) {
-    classParts[k] = d.history[k] ? 'class="completed"' : "";
+  historyBitVar.forEach(function (k) {
+    classParts[k] = d.history[k] ? 'class="completed"' : '';
   });
 
-  return L.Util.template('<div id="historydetails">History: '
-  + '<span id="visited" {visited}>visited</span> | '
-  + '<span id="captured" {captured}>captured</span> | '
-  + '<span id="scout-controlled" {scoutControlled}>scout controlled</span>'
-  + '</div>', classParts);
+  var template = '<div id="historydetails">History: '
+    + ((historyBitName[0] !== '') ? '<span id="'+historyBitVar[0]+'" {'+historyBitVar[0]+'}>'+historyBitName[0]+'</span>' : '')
+    + ((historyBitName[1] !== '') ? ' | <span id="'+historyBitVar[1]+'" {'+historyBitVar[1]+'}>'+historyBitName[1]+'</span>' : '')
+    + ((historyBitName[2] !== '') ? ' | <span id="'+historyBitVar[2]+'" {'+historyBitVar[2]+'}>'+historyBitName[2]+'</span>' : '')
+    + ((historyBitName[3] !== '') ? ' | <span id="'+historyBitVar[3]+'" {'+historyBitVar[3]+'}>'+historyBitName[3]+'</span>' : '')
+    + ((historyBitName[4] !== '') ? ' | <span id="'+historyBitVar[4]+'" {'+historyBitVar[4]+'}>'+historyBitName[4]+'</span>' : '')
+    + ((historyBitName[5] !== '') ? ' | <span id="'+historyBitVar[5]+'" {'+historyBitVar[5]+'}>'+historyBitName[5]+'</span>' : '')
+    + ((historyBitName[6] !== '') ? ' | <span id="'+historyBitVar[6]+'" {'+historyBitVar[6]+'}>'+historyBitName[6]+'</span>' : '')
+    + ((historyBitName[7] !== '') ? ' | <span id="'+historyBitVar[7]+'" {'+historyBitVar[7]+'}>'+historyBitName[7]+'</span>' : '')
+    + '</div>';
+
+  return L.Util.template(template, classParts);
 }
 
 // returns displayable text+link about portal range

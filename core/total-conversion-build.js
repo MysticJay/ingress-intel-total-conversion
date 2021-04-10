@@ -188,6 +188,14 @@ window.fields = {};
 // But you should use isLayerGroupDisplayed(name) to check the status
 window.overlayStatus = {};
 
+// history bits may be added or change their meanings. To be mor flexible
+// these get changable names. Empty name means: not in use
+window.historyBitName=['visited', 'captured', 'scout controlled',
+  '', '', '', '', ''];
+window.historyBitVar=['visited', 'captured', 'scoutControlled',
+  'historyBit3', 'historyBit4', 'historyBit5', 'historyBit6', 'historyBit7'];
+
+
 // plugin framework. Plugins may load earlier than iitc, so don’t
 // overwrite data
 if(typeof window.plugin !== 'function') window.plugin = function() {};

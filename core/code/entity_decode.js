@@ -68,6 +68,11 @@ function parseHistoryDetail(bitarray) {
     visited:  !!(bitarray & 1),
     captured: !!(bitarray & 2),
     scoutControlled:  !!(bitarray & 4),
+    historyBit3: !!(bitarray & (2**3)),
+    historyBit4: !!(bitarray & (2**4)),
+    historyBit5: !!(bitarray & (2**5)),
+    historyBit6: !!(bitarray & (2**6)),
+    historyBit7: !!(bitarray & (2**7)),
   };
 }
 
