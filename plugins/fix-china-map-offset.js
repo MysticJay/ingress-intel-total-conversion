@@ -1,10 +1,12 @@
 ﻿// @author         modos189
 // @name           Fix maps offsets in China
 // @category       Tweaks
-// @version        0.3.0
+// @version        0.3.1
 // @description    Show correct maps for China user by applying offset tweaks.
 
 
+/* exported setup --eslint */
+/* global L */
 // use own namespace for plugin
 var fixChinaMapOffset = {};
 window.plugin.fixChinaMapOffset = fixChinaMapOffset;
